@@ -1,4 +1,11 @@
 import React, { useState } from 'react';
+import './App.css';
+
+<div className="fogao-container">
+  <h2>Fogão</h2>
+  {/* restante do código */}
+</div>
+
 
 interface FogaoProps {
   cafeCoin: number;
