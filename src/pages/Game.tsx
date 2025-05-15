@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import Fogao from '../components/Fogao';
+import '../styles.css';  // Ajuste o caminho conforme a pasta do arquivo
+
+
 
 const Game: React.FC = () => {
   const [cafeCoin, setCafeCoin] = useState(100);

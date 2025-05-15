@@ -1,0 +1,130 @@
+/* styles.css */
+
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+    background-color: #fefefe;
+  }
+  
+  body {
+    background-color: #fff8f0;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  /* Container geral do jogo */
+  .game-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    border: 2px solid #d2b48c;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(210, 180, 140, 0.3);
+    padding: 20px 30px;
+  }
+  
+  /* Título principal */
+  h1 {
+    color: #6b4c3b;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Status do jogador */
+  .status {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    text-align: center;
+    font-weight: 600;
+    color: #a06c3b;
+  }
+  
+  /* Componente Fogao */
+  .fogao {
+    border: 2px solid #a67c52;
+    border-radius: 6px;
+    padding: 15px 20px;
+    background-color: #f7f0e3;
+  }
+  
+  .fogao h2 {
+    color: #8c6a42;
+    margin-bottom: 12px;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+  
+  /* Texto de cozinhando */
+  .fogao p {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: #7a5a31;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Select de receitas */
+  .fogao select {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1.5px solid #cbb895;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 12px;
+    background-color: #fff;
+    color: #5a3e1b;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+  }
+  
+  .fogao select:hover {
+    border-color: #a67c52;
+  }
+  
+  /* Botão Cozinhar */
+  .fogao button {
+    width: 100%;
+    padding: 10px 0;
+    background-color: #a67c52;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+  
+  .fogao button:disabled {
+    background-color: #d3c1a1;
+    cursor: not-allowed;
+  }
+  
+  .fogao button:not(:disabled):hover {
+    background-color: #8c6a42;
+  }
+  
+  /* Alertas e mensagens */
+  .alert {
+    color: #bb3e03;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 12px;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 480px) {
+    .game-container {
+      padding: 15px 15px;
+    }
+  
+    .fogao select, .fogao button {
+      font-size: 0.9rem;
+    }
+  }
+  

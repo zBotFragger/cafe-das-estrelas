@@ -29,7 +29,6 @@ const Fogao: React.FC<FogaoProps> = ({ cafeCoin, setCafeCoin, setXp }) => {
     setCozinhando(true);
     setTempoRestante(receita.tempo);
 
-    // Simular tempo de preparo
     const interval = setInterval(() => {
       setTempoRestante(prev => {
         if (prev <= 1) {
@@ -37,7 +36,7 @@ const Fogao: React.FC<FogaoProps> = ({ cafeCoin, setCafeCoin, setXp }) => {
           setCozinhando(false);
           setCafeCoin(c => c - receita.custo + receita.lucro);
           setXp(x => x + receita.xp);
-          alert(\`Você preparou \${receita.nome} e ganhou \${receita.lucro} CafeCoins e \${receita.xp} XP!\`);
+          alert(`Você preparou ${receita.nome} e ganhou ${receita.lucro} CafeCoins e ${receita.xp} XP!`);
           return 0;
         }
         return prev - 1;
@@ -55,7 +54,9 @@ const Fogao: React.FC<FogaoProps> = ({ cafeCoin, setCafeCoin, setXp }) => {
           <select onChange={e => setReceitaSelecionada(Number(e.target.value))} value={receitaSelecionada || ''}>
             <option value="" disabled>Escolha a receita</option>
             {receitas.map(r => (
-              <option key={r.id} value={r.id}>{r.nome} - Tempo: {r.tempo}s, Custo: {r.custo} CafeCoin, Lucro: {r.lucro} CafeCoin</option>
+              <option key={r.id} value={r.id}>
+                {r.nome} - Tempo: {r.tempo}s, Custo: {r.custo} CafeCoin, Lucro: {r.lucro} CafeCoin
+              </option>
             ))}
           </select>
           <button onClick={iniciarCozinha} disabled={receitaSelecionada === null}>Cozinhar</button>
