@@ -1,8 +1,8 @@
 // src/components/GameGrid.tsx
 import React, { useEffect, useState } from 'react';
-import garcom from '../assets/garcom.png';
-import fogao from '../assets/fogao.png';
-import mesa from '../assets/mesa.png';
+import Garcom from './Garcom';
+import Mesa from './Mesa';
+import FogaoSprite from './FogaoSprite';
 
 interface GridItem {
   type: 'fogao' | 'mesa' | 'garcom' | 'cliente';
@@ -10,12 +10,6 @@ interface GridItem {
   y: number;
   status?: 'ocupado' | 'livre';
 }
-
-const sprites: Record<string, string> = {
-  garcom,
-  fogao,
-  mesa,
-};
 
 const initialGridItems: GridItem[] = [
   { type: 'fogao', x: 0, y: 0 },
@@ -27,6 +21,12 @@ const initialGridItems: GridItem[] = [
 ];
 
 const GRID_SIZE = 7;
+
+const AssetComponents: Record<string, React.FC<{ className?: string }> | null> = {
+  garcom: Garcom,
+  fogao: FogaoSprite,
+  mesa: Mesa,
+};
 
 const GameGrid: React.FC = () => {
   const [gridItems, setGridItems] = useState<GridItem[]>(initialGridItems);
@@ -44,7 +44,6 @@ const GameGrid: React.FC = () => {
       if (mesasOcupadas.length > 0 && fogoes.length > 0) {
         const mesa = mesasOcupadas[0];
 
-        // Move o garçom até a mesa antes de servir
         setGarcomPos({ x: mesa.x, y: mesa.y });
 
         setTimeout(() => {
@@ -58,7 +57,6 @@ const GameGrid: React.FC = () => {
           setXp((prev) => prev + 1);
           setCoins((prev) => prev + 5);
 
-          // Volta o garçom à posição inicial
           setTimeout(() => {
             setGarcomPos({ x: 6, y: 6 });
           }, 500);
@@ -102,20 +100,20 @@ const GameGrid: React.FC = () => {
           const item = gridItems.find((i) => i.x === x && i.y === y);
           const isGarcomHere = garcomPos.x === x && garcomPos.y === y;
 
+          const Component = item ? AssetComponents[item.type] : null;
+
           return (
             <div
               key={index}
               className="w-16 h-16 bg-lime-900 border border-green-500 flex items-center justify-center rounded shadow-inner relative"
             >
-              {item && (
-                <img
-                  src={sprites[item.type]}
-                  alt={item.type}
-                  className={`w-10 h-10 ${item.status === 'ocupado' ? 'opacity-50' : ''}`}
+              {Component && (
+                <Component
+                  className={item?.status === 'ocupado' ? 'opacity-50' : ''}
                 />
               )}
               {isGarcomHere && !item && (
-                <img src={garcom} alt="garcom" className="w-10 h-10 absolute" />
+                <Garcom className="w-10 h-10 absolute" />
               )}
             </div>
           );
