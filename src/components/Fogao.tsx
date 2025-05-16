@@ -1,10 +1,4 @@
 import React, { useState } from 'react';
-import './App.css';
-
-<div className="fogao-container">
-  <h2>Fogão</h2>
-  {/* restante do código */}
-</div>
 
 
 interface FogaoProps {
@@ -23,6 +17,8 @@ const Fogao: React.FC<FogaoProps> = ({ cafeCoin, setCafeCoin, setXp }) => {
   const [cozinhando, setCozinhando] = useState(false);
   const [receitaSelecionada, setReceitaSelecionada] = useState<number | null>(null);
   const [tempoRestante, setTempoRestante] = useState(0);
+  console.log('Fogao renderizado', { cafeCoin });
+
 
   const iniciarCozinha = () => {
     if (receitaSelecionada === null) return;
@@ -52,21 +48,28 @@ const Fogao: React.FC<FogaoProps> = ({ cafeCoin, setCafeCoin, setXp }) => {
   };
 
   return (
-    <div style={{border: '1px solid black', padding: 10, marginTop: 20}}>
+    <div style={{ border: '1px solid black', padding: 10, marginTop: 20 }}>
       <h2>Fogão</h2>
       {cozinhando ? (
         <p>Cozinhando... Tempo restante: {tempoRestante}s</p>
       ) : (
         <>
-          <select onChange={e => setReceitaSelecionada(Number(e.target.value))} value={receitaSelecionada || ''}>
-            <option value="" disabled>Escolha a receita</option>
+          <select
+            onChange={e => setReceitaSelecionada(Number(e.target.value))}
+            value={receitaSelecionada ?? ''}
+          >
+            <option value="" disabled>
+              Escolha a receita
+            </option>
             {receitas.map(r => (
               <option key={r.id} value={r.id}>
                 {r.nome} - Tempo: {r.tempo}s, Custo: {r.custo} CafeCoin, Lucro: {r.lucro} CafeCoin
               </option>
             ))}
           </select>
-          <button onClick={iniciarCozinha} disabled={receitaSelecionada === null}>Cozinhar</button>
+          <button onClick={iniciarCozinha} disabled={receitaSelecionada === null}>
+            Cozinhar
+          </button>
         </>
       )}
     </div>

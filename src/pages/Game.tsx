@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import Fogao from '../components/Fogao';
-import '../styles.css';
-import './App.css';
 
 const Game: React.FC = () => {
+  console.log("Game component renderizou");
   const [cafeCoin, setCafeCoin] = useState(100);
   const [xp, setXp] = useState(0);
 
   return (
-    <div className="game-container">
+    
+    <div style={{ padding: 20 }}>
       <h1>Café das Estrelas - Seu Café</h1>
       <p>CafeCoin: {cafeCoin}</p>
       <p>XP: {xp}</p>
@@ -16,5 +16,7 @@ const Game: React.FC = () => {
     </div>
   );
 };
+
+
 
 export default Game;
